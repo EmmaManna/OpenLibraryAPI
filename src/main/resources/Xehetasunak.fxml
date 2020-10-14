@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Xehetasunak"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="467.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.XehetasunakKud">
+   <children>
+      <Label layoutX="167.0" layoutY="51.0" text="Liburuaren Xehetasunak">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="153.0" layoutY="121.0" text="Izenburua">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="141.0" layoutY="158.0" text="Argitaletxea">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="138.0" layoutY="200.0" text="Orri Kopurua">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="178.0" layoutY="245.0" text="Irudia">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="250.0" layoutY="123.0" />
+      <Label layoutX="236.0" layoutY="160.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text layoutX="239.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TextField layoutX="250.0" layoutY="119.0" prefHeight="25.0" prefWidth="337.0" />
+      <TextField layoutX="250.0" layoutY="158.0" prefHeight="25.0" prefWidth="205.0" />
+      <TextField layoutX="250.0" layoutY="198.0" prefHeight="25.0" prefWidth="80.0" />
+      <Button layoutX="260.0" layoutY="416.0" mnemonicParsing="false" onAction="#klikEgin" text="Atzera">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Pane layoutX="250.0" layoutY="245.0" prefHeight="146.0" prefWidth="132.0" />
+   </children>
 </AnchorPane>
