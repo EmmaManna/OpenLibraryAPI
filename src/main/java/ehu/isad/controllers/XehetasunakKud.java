@@ -4,16 +4,16 @@ package ehu.isad.controllers;
 
 import ehu.isad.Book;
 import ehu.isad.Liburuak;
+import ehu.isad.utils.Sarea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
-import javafx.scene.Parent;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -65,6 +65,9 @@ public class XehetasunakKud implements Initializable {
     private Text txt_orrikop;
 
     @FXML
+    private ImageView mgvw_irudia;
+
+    @FXML
     void klikEgin(ActionEvent event) {
 
         mainApp.mainErakutsi();
@@ -82,7 +85,11 @@ public class XehetasunakKud implements Initializable {
             txt_argitaletxea.setText(txt_argitaletxea.getText()+ ", " +  b.getDetails().getPublishers()[i]);
         }
         txt_orrikop.setText(String.valueOf(b.getDetails().getNumber_of_pages()));
-        //Irudia jarri
+        try {
+            mgvw_irudia.setImage(new Sarea().irudiaSortu(b.getThumbnail_url()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

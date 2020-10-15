@@ -3,15 +3,13 @@ package ehu.isad.controllers;
 import ehu.isad.Liburuak;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,6 +34,7 @@ public class LiburuKud implements Initializable {
     @FXML
     private Button btn_ikusi;
 
+
     @FXML
     void klikEgin(ActionEvent event) {
         String isbn = this.isbnLortu(cmbbx_liburuak.getValue());
@@ -49,6 +48,8 @@ public class LiburuKud implements Initializable {
         cmbbx_liburuak.getItems().add(2, "Fluent Python");
         cmbbx_liburuak.getItems().add(3, "Natural Language Processing with PyTorch");
         cmbbx_liburuak.getItems().add(4, "Data Algorithms");
+
+        cmbbx_liburuak.getSelectionModel().selectFirst();
     }
 
     private String isbnLortu(String lib){

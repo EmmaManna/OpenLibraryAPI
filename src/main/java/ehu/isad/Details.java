@@ -3,7 +3,7 @@ package ehu.isad;
 import java.util.Arrays;
 
 public class Details {
-    private String subtitle;
+    private String subtitle = "";
     private String title;
     private String[] publishers;
     private int number_of_pages;
