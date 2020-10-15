@@ -31,19 +31,46 @@ public class LiburuKud implements Initializable {
     private Label lbl_hautatu;
 
     @FXML
-    private ComboBox<?> cmbbx_liburuak;
+    private ComboBox<String> cmbbx_liburuak;
 
     @FXML
     private Button btn_ikusi;
 
     @FXML
     void klikEgin(ActionEvent event) {
-        mainApp.xehetasunakErakutsi();
+        String isbn = this.isbnLortu(cmbbx_liburuak.getValue());
+        mainApp.xehetasunakErakutsi(isbn);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        cmbbx_liburuak.getItems().add(0,"Blockchain: Blueprint for a New Economy");
+        cmbbx_liburuak.getItems().add(1,"R for Data Science");
+        cmbbx_liburuak.getItems().add(2, "Fluent Python");
+        cmbbx_liburuak.getItems().add(3, "Natural Language Processing with PyTorch");
+        cmbbx_liburuak.getItems().add(4, "Data Algorithms");
+    }
 
+    private String isbnLortu(String lib){
+        String isbn = "";
+        switch (lib) {
+            case "Blockchain: Blueprint for a New Economy":
+                isbn = "9781491920497";
+                break;
+            case "R for Data Science":
+                isbn = "1491910399";
+                break;
+            case "Fluent Python":
+                isbn = "1491946008";
+                break;
+            case "Natural Language Processing with PyTorch":
+                isbn = "1491978236";
+                break;
+            case "Data Algorithms":
+                isbn = "9781491906187";
+                break;
+        }
+        return isbn;
     }
 }
 

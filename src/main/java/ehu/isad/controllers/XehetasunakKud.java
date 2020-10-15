@@ -2,6 +2,7 @@ package ehu.isad.controllers;
 
 
 
+import ehu.isad.Book;
 import ehu.isad.Liburuak;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 
 import java.io.IOException;
@@ -45,13 +47,7 @@ public class XehetasunakKud implements Initializable {
     private Label lbl_irudia;
 
     @FXML
-    private TextField txt_izenburua;
-
-    @FXML
-    private TextField tt_argitaletxea;
-
-    @FXML
-    private TextField txt_orrikop;
+    private Text txt_izenburua;
 
     @FXML
     private Button btn_atzera;
@@ -60,13 +56,34 @@ public class XehetasunakKud implements Initializable {
     private Pane pn_irudia;
 
     @FXML
+    private Label lbl_izenburuJarri;
+
+    @FXML
+    private Text txt_argitaletxea;
+
+    @FXML
+    private Text txt_orrikop;
+
+    @FXML
     void klikEgin(ActionEvent event) {
+
         mainApp.mainErakutsi();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        txt_izenburua.setWrappingWidth(400);
+    }
 
+    public void datuakJarri(Book b){
+        txt_izenburua.setText(b.getDetails().getTitle()+ " " + b.getDetails().getSubtitle());
+        txt_argitaletxea.setText(b.getDetails().getPublishers()[0]);
+        for (int i=1; i < b.getDetails().getPublishers().length; i++){
+            txt_argitaletxea.setText(txt_argitaletxea.getText()+ ", " +  b.getDetails().getPublishers()[i]);
+        }
+        txt_orrikop.setText(String.valueOf(b.getDetails().getNumber_of_pages()));
+        //Irudia jarri
 
     }
+
 }
