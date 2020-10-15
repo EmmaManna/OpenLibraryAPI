@@ -20,6 +20,8 @@ public class Liburuak extends Application {
     private Parent xehetasunakUI;
 
     private Stage stage;
+    private Scene sceneL;
+    private Scene sceneX;
 
     private LiburuKud liburuKud;
     private XehetasunakKud xehetasunakKud;
@@ -31,7 +33,7 @@ public class Liburuak extends Application {
         pantailakKargatu();
 
         stage.setTitle("OpenLibrary API");
-        stage.setScene(new Scene(liburuakUI));
+        stage.setScene(sceneL);
         stage.show();
     }
 
@@ -40,11 +42,13 @@ public class Liburuak extends Application {
         liburuakUI = (Parent) loaderLiburuak.load();
         liburuKud = loaderLiburuak.getController();
         liburuKud.setMainApp(this);
+        sceneL = new Scene(liburuakUI);
 
         FXMLLoader loaderXehetasunak = new FXMLLoader(getClass().getResource("/Xehetasunak.fxml"));
         xehetasunakUI = (Parent) loaderXehetasunak.load();
         xehetasunakKud = loaderXehetasunak.getController();
         xehetasunakKud.setMainApp(this);
+        sceneX = new Scene(xehetasunakUI);
     }
 
     public static void main(String[] args) {
@@ -52,7 +56,7 @@ public class Liburuak extends Application {
     }
 
     public void mainErakutsi(){
-        stage.setScene(new Scene(liburuakUI));
+        stage.setScene(sceneL);
         stage.show();
     }
 
@@ -60,7 +64,7 @@ public class Liburuak extends Application {
         Book b = new Book();
         b = b.liburuaLortu(isbn);
         xehetasunakKud.datuakJarri(b);
-        stage.setScene(new Scene(xehetasunakUI));
+        stage.setScene(sceneX);
         stage.show();
 
     }
