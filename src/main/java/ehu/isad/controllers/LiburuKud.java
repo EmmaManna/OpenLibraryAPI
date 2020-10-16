@@ -23,7 +23,7 @@ public class LiburuKud implements Initializable {
     }
 
     @FXML
-    private AnchorPane pn_pane;
+    private AnchorPane anchorPane;
 
     @FXML
     private Label lbl_hautatu;
@@ -34,11 +34,21 @@ public class LiburuKud implements Initializable {
     @FXML
     private Button btn_ikusi;
 
+    @FXML
+    private Text txt_warning;
+
+
 
     @FXML
     void klikEgin(ActionEvent event) {
-        String isbn = this.isbnLortu(cmbbx_liburuak.getValue());
-        mainApp.xehetasunakErakutsi(isbn);
+        if(cmbbx_liburuak.getValue()!=null){
+            txt_warning.setVisible(false);
+            String isbn = this.isbnLortu(cmbbx_liburuak.getValue());
+            mainApp.xehetasunakErakutsi(isbn);
+        }
+        else{//Ez bada ezer sakatu
+            txt_warning.setVisible(true);
+        }
     }
 
     @Override
@@ -49,7 +59,9 @@ public class LiburuKud implements Initializable {
         cmbbx_liburuak.getItems().add(3, "Natural Language Processing with PyTorch");
         cmbbx_liburuak.getItems().add(4, "Data Algorithms");
 
-        cmbbx_liburuak.getSelectionModel().selectFirst();
+        txt_warning.setVisible(false);
+
+        //cmbbx_liburuak.getSelectionModel().selectFirst();
     }
 
     private String isbnLortu(String lib){
