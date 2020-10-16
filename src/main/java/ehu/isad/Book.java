@@ -39,5 +39,10 @@ public class Book {
         return b;
     }
 
+    public String irudiErtainaLortu(){
+        String ertaina = this.thumbnail_url.substring(0, this.thumbnail_url.length()-5);
+        ertaina = ertaina + "M.jpg";
+        return ertaina;
+    }
 
 }

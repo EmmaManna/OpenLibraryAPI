@@ -86,11 +86,11 @@ public class XehetasunakKud implements Initializable {
         }
         txt_orrikop.setText(String.valueOf(b.getDetails().getNumber_of_pages()));
         try {
-            mgvw_irudia.setImage(new Sarea().irudiaSortu(b.getThumbnail_url()));
+            //mgvw_irudia.setImage(new Sarea().irudiaSortu(b.getThumbnail_url()));
+            mgvw_irudia.setImage(new Sarea().irudiaSortu(b.irudiErtainaLortu()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }
