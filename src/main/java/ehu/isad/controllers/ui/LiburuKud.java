@@ -1,6 +1,9 @@
-package ehu.isad.controllers;
+package ehu.isad.controllers.ui;
 
 import ehu.isad.Liburuak;
+import ehu.isad.controllers.db.OpenLibraryKud;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LiburuKud implements Initializable {
@@ -53,15 +57,11 @@ public class LiburuKud implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cmbbx_liburuak.getItems().add(0,"Blockchain: Blueprint for a New Economy");
-        cmbbx_liburuak.getItems().add(1,"R for Data Science");
-        cmbbx_liburuak.getItems().add(2, "Fluent Python");
-        cmbbx_liburuak.getItems().add(3, "Natural Language Processing with PyTorch");
-        cmbbx_liburuak.getItems().add(4, "Data Algorithms");
-
+        List<String> liburuLista = OpenLibraryKud.getInstance().lortuLiburuak();
+        ObservableList<String> liburuak = FXCollections.observableArrayList(liburuLista);
+        cmbbx_liburuak.setItems( liburuak );
         txt_warning.setVisible(false);
 
-        //cmbbx_liburuak.getSelectionModel().selectFirst();
     }
 
     private String isbnLortu(String lib){

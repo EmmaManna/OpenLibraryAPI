@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="467.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.XehetasunakKud">
+<AnchorPane prefHeight="467.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controllers.ui.XehetasunakKud">
    <children>
       <Label fx:id="lbl_xehetasunak" layoutX="167.0" layoutY="51.0" text="Liburuaren Xehetasunak">
          <font>
