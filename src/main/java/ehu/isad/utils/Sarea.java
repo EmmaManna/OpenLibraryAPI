@@ -31,7 +31,6 @@ public class Sarea {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-
         return lerroa;
     }
 
@@ -39,12 +38,11 @@ public class Sarea {
         String[] zatiak = lerroa.split("ISBN:" + isbn+ "\": ");
         lerroa = zatiak[1].substring(0, zatiak[1].length()-1);
         System.out.println(lerroa);
-
         return lerroa;
     }
 
-    public void irudiaGorde(String url, String hFitxategia) throws IOException {
-        BufferedImage image =null;
+    public void irudiaGorde(String url, String hFitxategia){
+        BufferedImage image;
         try{
             URL Url =new URL(url);
             image = ImageIO.read(Url);

@@ -3,7 +3,6 @@ package ehu.isad.controllers.db;
 import ehu.isad.Book;
 import ehu.isad.utils.Sarea;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,37 +28,30 @@ public class OpenLibraryKud {
         List<String> emaitza = new ArrayList<>();
         try {
             while (rs.next()) {
-
                 long isbn = rs.getLong("isbn");
                 String izenburua = rs.getString("izenburua");
-
                 System.out.println(isbn + ":" + izenburua);
                 emaitza.add(izenburua);
-
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-
         return emaitza;
     }
 
     public long lortuISBN(String izenburua){
         long isbn = 0;
-
         String query = "select isbn from liburua where izenburua='" + izenburua +"'";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
         try {
             while (rs.next()) {
-
                 isbn = rs.getLong("isbn");
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-
         return isbn;
     }
 
@@ -70,7 +62,6 @@ public class OpenLibraryKud {
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
         boolean dago = true;
-
         try {
             rs.next();
             dago = rs.getInt("orrikop")!=0;
@@ -109,11 +100,7 @@ public class OpenLibraryKud {
 
     private void irudiaGorde(Book b){
         Sarea s = new Sarea();
-        try {
-            s.irudiaGorde(b.irudiErtainaLortu(), String.valueOf(b.getISBN()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        s.irudiaGorde(b.irudiErtainaLortu(), String.valueOf(b.getISBN()));
     }
 
     private boolean konprobatuArgitaletxea(String argitaletxea){
@@ -122,7 +109,6 @@ public class OpenLibraryKud {
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
         boolean dago = true;
-
         try {
 
             dago =  rs.next();
@@ -134,22 +120,19 @@ public class OpenLibraryKud {
 
     public String lortuDatuak(long isbn){
         String datuak = "";
-
-        String query = "select izenburua, subtitulua, orrikop from liburua where isbn="+isbn;
+        String query = "select izenburua, subtitulua, orrikop, irudiIzena from liburua where isbn="+isbn;
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
         try {
             while (rs.next()) {
-
                 datuak = rs.getString("izenburua");
                 datuak = datuak + ","+ rs.getInt("orrikop");
-
+                datuak = datuak + ","+ rs.getString("irudiIzena");
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-
         return datuak;
     }
 
@@ -167,10 +150,6 @@ public class OpenLibraryKud {
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
-
         return argitaletxeak;
     }
-
-
-
 }

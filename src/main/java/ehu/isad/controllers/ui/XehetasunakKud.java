@@ -2,6 +2,7 @@ package ehu.isad.controllers.ui;
 
 import ehu.isad.Liburuak;
 import ehu.isad.controllers.db.OpenLibraryKud;
+import ehu.isad.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -14,8 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -87,16 +86,6 @@ public class XehetasunakKud implements Initializable {
         for (int i=1; i < argitaletxeak.size(); i++){
             txt_argitaletxea.setText(txt_argitaletxea.getText()+ ", " + argitaletxeak.get(i));
         }
-
-        /*
-        try {
-            //mgvw_irudia.setImage(new Sarea().irudiaSortu(b.getThumbnail_url()));
-            mgvw_irudia.setImage(new Sarea().irudiaSortu(b.irudiErtainaLortu()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-         */
+        mgvw_irudia.setImage(new Utils().lortuIrudia(zatiak[2]));
     }
-
 }

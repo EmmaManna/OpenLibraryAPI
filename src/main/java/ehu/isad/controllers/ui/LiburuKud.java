@@ -51,9 +51,7 @@ public class LiburuKud implements Initializable {
             if(!OpenLibraryKud.getInstance().konprobatuDagoen(cmbbx_liburuak.getValue())){ //Liburua dbasean ez badago
                 System.out.println("Liburua ez dago datu basean");
                 OpenLibraryKud.getInstance().liburuaKargatu(isbn);
-
                 System.out.println("Liburua kargatuta");
-
             }
             mainApp.xehetasunakErakutsi(isbn);
         }
@@ -68,7 +66,6 @@ public class LiburuKud implements Initializable {
         ObservableList<String> liburuak = FXCollections.observableArrayList(liburuLista);
         cmbbx_liburuak.setItems( liburuak );
         txt_warning.setVisible(false);
-
     }
 
 }
