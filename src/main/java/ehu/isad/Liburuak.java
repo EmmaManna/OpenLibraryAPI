@@ -61,9 +61,7 @@ public class Liburuak extends Application {
     }
 
     public void xehetasunakErakutsi(long isbn){
-        Book b = new Book();
-        b = b.liburuaLortu(isbn);
-        xehetasunakKud.datuakJarri(b);
+        xehetasunakKud.datuakJarri(isbn);
         stage.setScene(sceneX);
         stage.show();
 

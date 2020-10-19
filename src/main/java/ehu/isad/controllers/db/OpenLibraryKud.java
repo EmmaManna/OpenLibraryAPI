@@ -115,4 +115,43 @@ public class OpenLibraryKud {
         return dago;
     }
 
+    public String lortuDatuak(long isbn){
+        String datuak = "";
+
+        String query = "select izenburua, subtitulua, orrikop from liburua where isbn="+isbn;
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+
+        try {
+            while (rs.next()) {
+
+                datuak = rs.getString("izenburua");
+                datuak = datuak + ","+ rs.getInt("orrikop");
+
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return datuak;
+    }
+
+    public List<String> lortuArgitaletxeak(long isbn){
+        List<String> argitaletxeak= new ArrayList<>();
+
+        String query = "select argitaletxea from libargitaletxe where liburua="+isbn;
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+
+        try {
+            while (rs.next()) {
+                argitaletxeak.add(rs.getString("argitaletxea"));
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return argitaletxeak;
+    }
+
 }

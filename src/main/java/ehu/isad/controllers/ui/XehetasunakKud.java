@@ -4,6 +4,7 @@ package ehu.isad.controllers.ui;
 
 import ehu.isad.Book;
 import ehu.isad.Liburuak;
+import ehu.isad.controllers.db.OpenLibraryKud;
 import ehu.isad.utils.Sarea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class XehetasunakKud implements Initializable {
@@ -78,19 +80,27 @@ public class XehetasunakKud implements Initializable {
         txt_izenburua.setWrappingWidth(400);
     }
 
-    public void datuakJarri(Book b){
-        txt_izenburua.setText(b.getDetails().getTitle()+ " " + b.getDetails().getSubtitle());
-        txt_argitaletxea.setText(b.getDetails().getPublishers()[0]);
-        for (int i=1; i < b.getDetails().getPublishers().length; i++){
-            txt_argitaletxea.setText(txt_argitaletxea.getText()+ ", " +  b.getDetails().getPublishers()[i]);
+    public void datuakJarri(long isbn){
+        String b = OpenLibraryKud.getInstance().lortuDatuak(isbn);
+        String[] zatiak = b.split(",");
+        txt_izenburua.setText(zatiak[0]+ " ");
+        txt_orrikop.setText(String.valueOf(zatiak[1]));
+
+        List<String> argitaletxeak = OpenLibraryKud.getInstance().lortuArgitaletxeak(isbn);
+        txt_argitaletxea.setText(argitaletxeak.get(0));
+        for (int i=1; i < argitaletxeak.size(); i++){
+            txt_argitaletxea.setText(txt_argitaletxea.getText()+ ", " + argitaletxeak.get(i));
         }
-        txt_orrikop.setText(String.valueOf(b.getDetails().getNumber_of_pages()));
+
+        /*
         try {
             //mgvw_irudia.setImage(new Sarea().irudiaSortu(b.getThumbnail_url()));
             mgvw_irudia.setImage(new Sarea().irudiaSortu(b.irudiErtainaLortu()));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+         */
     }
 
 }

@@ -51,11 +51,8 @@ public class LiburuKud implements Initializable {
             if(!OpenLibraryKud.getInstance().konprobatuDagoen(cmbbx_liburuak.getValue())){ //Liburua dbasean ez badago
                 System.out.println("Liburua ez dago datu basean");
                 OpenLibraryKud.getInstance().liburuaKargatu(isbn);
-                //mainApp.xehetasunakErakutsi(isbn);
                 System.out.println("Liburua kargatuta");
             }
-
-            //String isbn = this.isbnLortu(cmbbx_liburuak.getValue());
             mainApp.xehetasunakErakutsi(isbn);
         }
         else{//Ez bada ezer sakatu
