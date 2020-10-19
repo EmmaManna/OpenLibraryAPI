@@ -47,7 +47,15 @@ public class LiburuKud implements Initializable {
     void klikEgin(ActionEvent event) {
         if(cmbbx_liburuak.getValue()!=null){
             txt_warning.setVisible(false);
-            String isbn = this.isbnLortu(cmbbx_liburuak.getValue());
+            long isbn = OpenLibraryKud.getInstance().lortuISBN(cmbbx_liburuak.getValue());
+            if(!OpenLibraryKud.getInstance().konprobatuDagoen(cmbbx_liburuak.getValue())){ //Liburua dbasean ez badago
+                System.out.println("Liburua ez dago datu basean");
+                OpenLibraryKud.getInstance().liburuaKargatu(isbn);
+                //mainApp.xehetasunakErakutsi(isbn);
+                System.out.println("Liburua kargatuta");
+            }
+
+            //String isbn = this.isbnLortu(cmbbx_liburuak.getValue());
             mainApp.xehetasunakErakutsi(isbn);
         }
         else{//Ez bada ezer sakatu
@@ -62,28 +70,6 @@ public class LiburuKud implements Initializable {
         cmbbx_liburuak.setItems( liburuak );
         txt_warning.setVisible(false);
 
-    }
-
-    private String isbnLortu(String lib){
-        String isbn = "";
-        switch (lib) {
-            case "Blockchain: Blueprint for a New Economy":
-                isbn = "9781491920497";
-                break;
-            case "R for Data Science":
-                isbn = "1491910399";
-                break;
-            case "Fluent Python":
-                isbn = "1491946008";
-                break;
-            case "Natural Language Processing with PyTorch":
-                isbn = "1491978236";
-                break;
-            case "Data Algorithms":
-                isbn = "9781491906187";
-                break;
-        }
-        return isbn;
     }
 }
 

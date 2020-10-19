@@ -14,11 +14,11 @@ public class Sarea {
 
     public Sarea(){}
 
-    public String URLtikIrakurri(String isbn){
+    public String URLtikIrakurri(long isbn){
         return this.zatitu(this.datuakLortu(isbn),isbn);
     }
 
-    private String datuakLortu(String isbn){
+    private String datuakLortu(long isbn){
         String lerroa = " ";
         URL openLibrary;
 
@@ -37,7 +37,7 @@ public class Sarea {
         return lerroa;
     }
 
-    private String zatitu(String lerroa, String isbn){
+    private String zatitu(String lerroa, long isbn){
         String[] zatiak = lerroa.split("ISBN:" + isbn+ "\": ");
         lerroa = zatiak[1].substring(0, zatiak[1].length()-1);
         System.out.println(lerroa);

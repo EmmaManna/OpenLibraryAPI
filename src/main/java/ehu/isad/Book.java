@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import ehu.isad.utils.Sarea;
 
 public class Book {
-    private String ISBN;
+    private long ISBN;
     private String thumbnail_url;
     private Details details;
 
@@ -20,6 +20,10 @@ public class Book {
 
     public Book(){}
 
+    public long getISBN() {
+        return ISBN;
+    }
+
     public String getThumbnail_url() {
         return thumbnail_url;
     }
@@ -28,7 +32,7 @@ public class Book {
         return details;
     }
 
-    public Book liburuaLortu(String isbn)  {
+    public Book liburuaLortu(long isbn)  {
 
         Sarea s = new Sarea();
         String lerroa = s.URLtikIrakurri(isbn);

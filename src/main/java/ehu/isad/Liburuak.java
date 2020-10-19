@@ -60,7 +60,7 @@ public class Liburuak extends Application {
         stage.show();
     }
 
-    public void xehetasunakErakutsi(String isbn){
+    public void xehetasunakErakutsi(long isbn){
         Book b = new Book();
         b = b.liburuaLortu(isbn);
         xehetasunakKud.datuakJarri(b);
