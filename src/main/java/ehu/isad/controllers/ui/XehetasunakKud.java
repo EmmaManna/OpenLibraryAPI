@@ -1,11 +1,7 @@
 package ehu.isad.controllers.ui;
 
-
-
-import ehu.isad.Book;
 import ehu.isad.Liburuak;
 import ehu.isad.controllers.db.OpenLibraryKud;
-import ehu.isad.utils.Sarea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 

@@ -1,14 +1,12 @@
 package ehu.isad.utils;
 
-import javafx.scene.image.Image;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import javax.imageio.ImageIO;
 
 public class Sarea {
 
@@ -45,12 +43,14 @@ public class Sarea {
         return lerroa;
     }
 
-    public Image irudiaSortu(String url) throws IOException{
-        URLConnection konexioa = new URL(url).openConnection();
-        konexioa.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
-        try (InputStream stream = konexioa.getInputStream()) {
-            return new Image(stream);
+    public void irudiaGorde(String url, String hFitxategia) throws IOException {
+        BufferedImage image =null;
+        try{
+            URL Url =new URL(url);
+            image = ImageIO.read(Url);
+            ImageIO.write(image, "png",new File(Utils.lortuEzarpenak().getProperty("pathToImages")+hFitxategia+".png"));
+        }catch(IOException e){
+            e.printStackTrace();
         }
-
     }
 }

@@ -1,7 +1,9 @@
 package ehu.isad.controllers.db;
 
 import ehu.isad.Book;
+import ehu.isad.utils.Sarea;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -82,11 +84,17 @@ public class OpenLibraryKud {
         Book b = new Book();
         b = b.liburuaLortu(isbn);
 
-        String query = "update liburua set subtitulua='"+b.getDetails().getSubtitle()+"', orrikop="+b.getDetails().getNumber_of_pages()+" where isbn="+b.getISBN();
+        String query = "update liburua set subtitulua='"+b.getDetails().getSubtitle()+"', orrikop="+b.getDetails().getNumber_of_pages()+", irudiIzena='"+isbn+"' where isbn="+b.getISBN();
         System.out.println(query);
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
 
+        this.argitaletxeakKargatu(b);
+        this.irudiaGorde(b);
+    }
+
+    private void argitaletxeakKargatu(Book b){
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         for(int i = 0; i<b.getDetails().getPublishers().length; i++){
             if(!this.konprobatuArgitaletxea(b.getDetails().getPublishers()[i])){
                 String query1 = "insert into argitaletxea values (\"" +b.getDetails().getPublishers()[i]+ "\")";
@@ -96,6 +104,15 @@ public class OpenLibraryKud {
             String query2 = "insert into libargitaletxe values (\"" +b.getDetails().getPublishers()[i]+ "\"," + b.getISBN()+")";
             System.out.println(query2);
             dbKudeatzaile.execSQL(query2);
+        }
+    }
+
+    private void irudiaGorde(Book b){
+        Sarea s = new Sarea();
+        try {
+            s.irudiaGorde(b.irudiErtainaLortu(), String.valueOf(b.getISBN()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -153,5 +170,7 @@ public class OpenLibraryKud {
 
         return argitaletxeak;
     }
+
+
 
 }
