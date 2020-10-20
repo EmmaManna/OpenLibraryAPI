@@ -11,10 +11,13 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -86,6 +89,15 @@ public class XehetasunakKud implements Initializable {
         for (int i=1; i < argitaletxeak.size(); i++){
             txt_argitaletxea.setText(txt_argitaletxea.getText()+ ", " + argitaletxeak.get(i));
         }
-        mgvw_irudia.setImage(new Utils().lortuIrudia(zatiak[2]));
+        this.irudiaKargatu(zatiak[2]);
+    }
+
+    private void irudiaKargatu(String izena){
+        String imagePath = Utils.lortuEzarpenak().getProperty("pathToImages")+izena+".png";
+        try {
+            mgvw_irudia.setImage(new Image(new FileInputStream(imagePath)));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

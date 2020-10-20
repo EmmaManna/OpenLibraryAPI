@@ -76,7 +76,6 @@ public class OpenLibraryKud {
         b = b.liburuaLortu(isbn);
 
         String query = "update liburua set subtitulua='"+b.getDetails().getSubtitle()+"', orrikop="+b.getDetails().getNumber_of_pages()+", irudiIzena='"+isbn+"' where isbn="+b.getISBN();
-        System.out.println(query);
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
 
@@ -89,11 +88,9 @@ public class OpenLibraryKud {
         for(int i = 0; i<b.getDetails().getPublishers().length; i++){
             if(!this.konprobatuArgitaletxea(b.getDetails().getPublishers()[i])){
                 String query1 = "insert into argitaletxea values (\"" +b.getDetails().getPublishers()[i]+ "\")";
-                System.out.println(query1);
                 dbKudeatzaile.execSQL(query1);
             }
             String query2 = "insert into libargitaletxe values (\"" +b.getDetails().getPublishers()[i]+ "\"," + b.getISBN()+")";
-            System.out.println(query2);
             dbKudeatzaile.execSQL(query2);
         }
     }
