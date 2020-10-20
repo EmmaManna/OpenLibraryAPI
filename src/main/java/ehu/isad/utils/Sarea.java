@@ -46,7 +46,7 @@ public class Sarea {
         try{
             URL Url =new URL(url);
             image = ImageIO.read(Url);
-            ImageIO.write(image, "png",new File(Utils.lortuEzarpenak().getProperty("pathToImages")+hFitxategia+".png"));
+            ImageIO.write(image, "png", new File(Utils.lortuEzarpenak().getProperty("pathToImages")+hFitxategia+".png"));
         }catch(IOException e){
             e.printStackTrace();
         }
